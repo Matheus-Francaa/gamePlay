@@ -1,20 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useState } from 'react';
+import DetailsScreen from './screens/DetailsScreen';
+import HomeScreen from './screens/HomeScreen';
+import LoginScreen from './screens/LoginScreen';
+import ScheduleScreen from './screens/ScheduleScreen';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+    const [screen, setScreen] = useState('login');
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    if (screen === 'login') {
+        return <LoginScreen onLogin={() => setScreen('home')} />;
+    }
+
+    if (screen === 'details') {
+        return <DetailsScreen onBack={() => setScreen('home')} />;
+    }
+
+    if (screen === 'schedule') {
+        return <ScheduleScreen onBack={() => setScreen('home')} />;
+    }
+
+    return <HomeScreen onOpenDetails={() => setScreen('details')} onOpenSchedule={() => setScreen('schedule')} onLogout={() => setScreen('login')} />;
+}
