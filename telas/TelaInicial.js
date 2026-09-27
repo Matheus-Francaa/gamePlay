@@ -1,13 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-const categories = [
+const categorias = [
     { label: 'Ranqueada', icon: '🏆' },
     { label: 'Duelo 1x1', icon: '⚔️' },
     { label: 'Diversão', icon: '🎭' },
 ];
 
-const matches = [
+const partidas = [
     { title: 'Lendários', type: 'Ranqueada', date: '18/06 às 21:00h', role: 'Anfitrião', roleColor: '#ed1648', image: require('../assets/lol.png') },
     { title: 'Yeah, boy', type: 'Diversão', date: '23/06 às 19:00h', role: 'Visitante', roleColor: '#2fc45b', image: require('../assets/read.png') },
     { title: 'Rumo ao topo', type: '1×1', date: '20/06 às 09:00h', role: 'Anfitrião', roleColor: '#ed1648', image: require('../assets/cs.png') },
@@ -15,7 +15,7 @@ const matches = [
     { title: 'Valorosos', type: 'Diversão', date: '19/06 às 21:00h', role: 'Anfitrião', roleColor: '#ed1648', image: require('../assets/valorant.png') },
 ];
 
-export default function HomeScreen({ onOpenDetails, onOpenSchedule, onLogout }) {
+export default function TelaInicial({ onOpenDetails, onOpenSchedule, onLogout }) {
     return (
         <View style={styles.container}>
             <StatusBar style="light" />
@@ -26,15 +26,15 @@ export default function HomeScreen({ onOpenDetails, onOpenSchedule, onLogout }) 
                     <TouchableOpacity onPress={onOpenSchedule} activeOpacity={0.8} style={styles.addButton}><Text style={styles.addText}>+</Text></TouchableOpacity>
                 </View>
                 <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.categories}>
-                    {categories.map((category) => <TouchableOpacity key={category.label} activeOpacity={0.8} style={styles.categoryCard}><Text style={styles.categoryIcon}>{category.icon}</Text><Text style={styles.categoryLabel}>{category.label}</Text></TouchableOpacity>)}
+                    {categorias.map((categoria) => <TouchableOpacity key={categoria.label} activeOpacity={0.8} style={styles.categoryCard}><Text style={styles.categoryIcon}>{categoria.icon}</Text><Text style={styles.categoryLabel}>{categoria.label}</Text></TouchableOpacity>)}
                 </ScrollView>
                 <View style={styles.sectionHeader}><Text style={styles.sectionTitle}>Partidas agendadas</Text><Text style={styles.total}>Total 6</Text></View>
                 <View style={styles.matchList}>
-                    {matches.map((match) => <TouchableOpacity key={match.title} onPress={match.title === 'Lendários' ? onOpenDetails : undefined} activeOpacity={0.8} style={styles.matchRow}>
-                        <Image source={match.image} resizeMode="cover" style={styles.gameImage} />
+                    {partidas.map((partida) => <TouchableOpacity key={partida.title} onPress={partida.title === 'Lendários' ? onOpenDetails : undefined} activeOpacity={0.8} style={styles.matchRow}>
+                        <Image source={partida.image} resizeMode="cover" style={styles.gameImage} />
                         <View style={styles.matchInfo}>
-                            <View style={styles.matchTopLine}><Text style={styles.matchTitle} numberOfLines={1}>{match.title}</Text><Text style={styles.matchType}>{match.type}</Text></View>
-                            <View style={styles.matchBottomLine}><Text style={styles.date}><Text style={styles.calendar}>■</Text> {match.date}</Text><Text style={[styles.role, { color: match.roleColor }]}>● {match.role}</Text></View>
+                            <View style={styles.matchTopLine}><Text style={styles.matchTitle} numberOfLines={1}>{partida.title}</Text><Text style={styles.matchType}>{partida.type}</Text></View>
+                            <View style={styles.matchBottomLine}><Text style={styles.date}><Text style={styles.calendar}>■</Text> {partida.date}</Text><Text style={[styles.role, { color: partida.roleColor }]}>● {partida.role}</Text></View>
                         </View>
                     </TouchableOpacity>)}
                 </View>

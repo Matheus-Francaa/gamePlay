@@ -1,23 +1,23 @@
 import { useState } from 'react';
-import DetailsScreen from './screens/DetailsScreen';
-import HomeScreen from './screens/HomeScreen';
-import LoginScreen from './screens/LoginScreen';
-import ScheduleScreen from './screens/ScheduleScreen';
+import TelaDetalhes from './telas/TelaDetalhes';
+import TelaInicial from './telas/TelaInicial';
+import TelaLogin from './telas/TelaLogin';
+import TelaAgendamento from './telas/TelaAgendamento';
 
 export default function App() {
-    const [screen, setScreen] = useState('login');
+    const [tela, definirTela] = useState('login');
 
-    if (screen === 'login') {
-        return <LoginScreen onLogin={() => setScreen('home')} />;
+    if (tela === 'login') {
+        return <TelaLogin onLogin={() => definirTela('home')} />;
     }
 
-    if (screen === 'details') {
-        return <DetailsScreen onBack={() => setScreen('home')} />;
+    if (tela === 'details') {
+        return <TelaDetalhes onBack={() => definirTela('home')} />;
     }
 
-    if (screen === 'schedule') {
-        return <ScheduleScreen onBack={() => setScreen('home')} />;
+    if (tela === 'schedule') {
+        return <TelaAgendamento onBack={() => definirTela('home')} />;
     }
 
-    return <HomeScreen onOpenDetails={() => setScreen('details')} onOpenSchedule={() => setScreen('schedule')} onLogout={() => setScreen('login')} />;
+    return <TelaInicial onOpenDetails={() => definirTela('details')} onOpenSchedule={() => definirTela('schedule')} onLogout={() => definirTela('login')} />;
 }

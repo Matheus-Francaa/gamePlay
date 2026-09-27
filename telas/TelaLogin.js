@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-export default function LoginScreen({ onLogin }) {
+export default function TelaLogin({ onLogin }) {
     return (
         <View style={styles.container}>
             <StatusBar style="light" />

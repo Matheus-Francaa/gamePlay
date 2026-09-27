@@ -2,19 +2,19 @@ import { StatusBar } from 'expo-status-bar';
 import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useState } from 'react';
 
-const categories = [
+const categorias = [
     { label: 'Ranqueada', icon: '🏆' },
     { label: 'Duelo 1x1', icon: '⚔️' },
     { label: 'Diversão', icon: '🎭' },
 ];
 
-export default function ScheduleScreen({ onBack }) {
-    const [selectedCategory, setSelectedCategory] = useState('Ranqueada');
-    const [day, setDay] = useState('');
-    const [month, setMonth] = useState('');
-    const [hour, setHour] = useState('');
-    const [minute, setMinute] = useState('');
-    const [description, setDescription] = useState('');
+export default function TelaAgendamento({ onBack }) {
+    const [categoriaSelecionada, definirCategoriaSelecionada] = useState('Ranqueada');
+    const [dia, definirDia] = useState('');
+    const [mes, definirMes] = useState('');
+    const [hora, definirHora] = useState('');
+    const [minuto, definirMinuto] = useState('');
+    const [descricao, definirDescricao] = useState('');
 
     return (
         <View style={styles.container}>
@@ -30,18 +30,18 @@ export default function ScheduleScreen({ onBack }) {
             <View style={styles.body}>
                 <Text style={styles.label}>Categoria</Text>
                 <View style={styles.categoryRow}>
-                    {categories.map((category) => {
-                        const isSelected = selectedCategory === category.label;
+                    {categorias.map((categoria) => {
+                        const estaSelecionada = categoriaSelecionada === categoria.label;
                         return (
                             <TouchableOpacity
-                                key={category.label}
-                                onPress={() => setSelectedCategory(category.label)}
+                                key={categoria.label}
+                                onPress={() => definirCategoriaSelecionada(categoria.label)}
                                 activeOpacity={0.8}
-                                style={[styles.categoryCard, isSelected && styles.categoryCardSelected]}
+                                style={[styles.categoryCard, estaSelecionada && styles.categoryCardSelected]}
                             >
-                                <Text style={[styles.categoryIcon, !isSelected && styles.categoryIconMuted]}>{category.icon}</Text>
-                                <Text style={styles.categoryLabel}>{category.label}</Text>
-                                {isSelected && <View style={styles.selectedDot} />}
+                                <Text style={[styles.categoryIcon, !estaSelecionada && styles.categoryIconMuted]}>{categoria.icon}</Text>
+                                <Text style={styles.categoryLabel}>{categoria.label}</Text>
+                                {estaSelecionada && <View style={styles.selectedDot} />}
                             </TouchableOpacity>
                         );
                     })}
@@ -62,13 +62,13 @@ export default function ScheduleScreen({ onBack }) {
                     <Text style={styles.label}>Horário</Text>
                 </View>
                 <View style={styles.inputRow}>
-                    <TextInput value={day} onChangeText={setDay} keyboardType="number-pad" maxLength={2} placeholder="" placeholderTextColor="#8b93b8" style={styles.smallInput} />
+                    <TextInput value={dia} onChangeText={definirDia} keyboardType="number-pad" maxLength={2} placeholder="" placeholderTextColor="#8b93b8" style={styles.smallInput} />
                     <Text style={styles.separator}>/</Text>
-                    <TextInput value={month} onChangeText={setMonth} keyboardType="number-pad" maxLength={2} placeholder="" placeholderTextColor="#8b93b8" style={styles.smallInput} />
+                    <TextInput value={mes} onChangeText={definirMes} keyboardType="number-pad" maxLength={2} placeholder="" placeholderTextColor="#8b93b8" style={styles.smallInput} />
                     <View style={styles.inputGap} />
-                    <TextInput value={hour} onChangeText={setHour} keyboardType="number-pad" maxLength={2} placeholder="" placeholderTextColor="#8b93b8" style={styles.smallInput} />
+                    <TextInput value={hora} onChangeText={definirHora} keyboardType="number-pad" maxLength={2} placeholder="" placeholderTextColor="#8b93b8" style={styles.smallInput} />
                     <Text style={styles.separator}>:</Text>
-                    <TextInput value={minute} onChangeText={setMinute} keyboardType="number-pad" maxLength={2} placeholder="" placeholderTextColor="#8b93b8" style={styles.smallInput} />
+                    <TextInput value={minuto} onChangeText={definirMinuto} keyboardType="number-pad" maxLength={2} placeholder="" placeholderTextColor="#8b93b8" style={styles.smallInput} />
                 </View>
 
                 <View style={styles.descriptionHeader}>
@@ -76,8 +76,8 @@ export default function ScheduleScreen({ onBack }) {
                     <Text style={styles.counter}>Máx 100 caracteres</Text>
                 </View>
                 <TextInput
-                    value={description}
-                    onChangeText={setDescription}
+                    value={descricao}
+                    onChangeText={definirDescricao}
                     maxLength={100}
                     multiline
                     textAlignVertical="top"

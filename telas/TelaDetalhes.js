@@ -1,13 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import { Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-const players = [
+const jogadores = [
     { name: 'Tiago Luchtenberg', status: 'Disponível', color: '#2fc45b', initials: 'TL' },
     { name: 'Rodrigo Gonçalves', status: 'Ocupado', color: '#ed1648', initials: 'RG' },
     { name: 'Diego Fernandes', status: 'Ocupado', color: '#ed1648', initials: 'DF' },
 ];
 
-export default function DetailsScreen({ onBack }) {
+export default function TelaDetalhes({ onBack }) {
     return (
         <View style={styles.container}>
             <StatusBar style="light" />
@@ -39,12 +39,12 @@ export default function DetailsScreen({ onBack }) {
             </View>
 
             <View style={styles.playersList}>
-                {players.map((player) => (
-                    <View key={player.name} style={styles.playerRow}>
-                        <View style={styles.playerAvatar}><Text style={styles.playerInitials}>{player.initials}</Text></View>
+                {jogadores.map((jogador) => (
+                    <View key={jogador.name} style={styles.playerRow}>
+                        <View style={styles.playerAvatar}><Text style={styles.playerInitials}>{jogador.initials}</Text></View>
                         <View style={styles.playerInfo}>
-                            <Text style={styles.playerName}>{player.name}</Text>
-                            <Text style={styles.playerStatus}><Text style={{ color: player.color }}>●</Text> {player.status}</Text>
+                            <Text style={styles.playerName}>{jogador.name}</Text>
+                            <Text style={styles.playerStatus}><Text style={{ color: jogador.color }}>●</Text> {jogador.status}</Text>
                         </View>
                     </View>
                 ))}
